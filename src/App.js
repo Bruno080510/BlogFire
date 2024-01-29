@@ -6,6 +6,8 @@ import { useState } from 'react';
 import {signOut} from 'firebase/auth'
 import { auth } from './firebase';
 import Post from './pages/Post';
+import { FaUserCircle } from "react-icons/fa";
+
 
 import './App.css'
 
@@ -24,16 +26,16 @@ function App() {
   }
   return (
     <Router>
-      <nav className=' w-full h-24 text-white text-2xl text-center justify-center items-center flex bg-black'>
+      <nav className=' flex justify-between w-full h-24 text-white text-2xl text-center items-center  bg-black'>
         <Link to="/" className='px-3'>Home</Link>
-        {
-           !isAuth ? 
-        <Link to="/login" className='px-3'>Login</Link> : <Link to="/" onClick={Logout} className='px-5'>Logout</Link>
-        }
         {
           isAuth === "true" ?
           <Link to="/new">Create Post</Link> :
           <></>
+        }
+        {
+           !isAuth ? 
+        <Link to="/login" className='px-3'><FaUserCircle/></Link> : <Link to="/" onClick={Logout} className='px-5'><FaUserCircle/> Logout</Link>
         }
       </nav>
       <Routes>
