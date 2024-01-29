@@ -25,7 +25,7 @@ function App() {
         <Link to="/" className='px-3'>Home</Link>
         {
            !isAuth ? 
-        <Link to="/login" className='px-3'>Login</Link> : <button onClick={Logout} className='px-5'>Logout</button>
+        <Link to="/login" className='px-3'>Login</Link> : <Link to="/" onClick={Logout} className='px-5'>Logout</Link>
         }
         {
           isAuth === "true" ?
