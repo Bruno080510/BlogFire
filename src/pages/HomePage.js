@@ -3,9 +3,13 @@ import {deleteDoc, getDocs, doc  } from 'firebase/firestore'
 import { db, auth } from '../firebase'
 import { collection} from 'firebase/firestore'
 
+import { Link, Navigate, useNavigate } from 'react-router-dom'
+
 
 
 function HomePage( {isAuth} ) {
+const navigate = useNavigate()
+
   const [postList, setPostList] = useState([])
   const postCollection = collection(db, "posts")
 
@@ -25,15 +29,18 @@ function HomePage( {isAuth} ) {
     window.location.reload(false);
   }
 
+
+ 
   return (
     <div>
       {postList.map((post) => {
       
         return (
+          <div className=' cursor-pointer' onClick={(()=>{navigate(`/post/${post.id}`)})}>
           <div className='justify-center  flex  pt-3'>
               <div className=' pt-4 text-center  w-56 bg-green-300'>
               <h1>Titulo: {post.title}</h1>
-              <p>{post.postText}</p>
+              <p>{post.descricao}</p>
               <p>{post.author.name}</p>
               <div className='deletePost'>
                 {
@@ -43,6 +50,7 @@ function HomePage( {isAuth} ) {
               </div>
               <br></br>
             </div>
+          </div>
           </div>)
       })}
     </div>

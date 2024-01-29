@@ -5,7 +5,10 @@ import NewPost from './pages/NewPost';
 import { useState } from 'react';
 import {signOut} from 'firebase/auth'
 import { auth } from './firebase';
+import Post from './pages/Post';
+
 import './App.css'
+
 
 
 
@@ -37,6 +40,7 @@ function App() {
         <Route path='/' element={<HomePage isAuth={isAuth}/>} />
         <Route path='/login' element={<Login setIsAuth={setIsAuth}/>} />
         <Route path='/new' element={<NewPost isAuth={isAuth}/>} />
+        <Route path='/post/:id' element={<Post/>}/>
       </Routes>
     </Router>
   );
