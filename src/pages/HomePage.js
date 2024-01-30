@@ -34,14 +34,15 @@ const navigate = useNavigate()
 
  
   return (
-    <div className='flex gap-8 p-10'>
+    <div className='flex gap-8 p-10 '>
       {postList.map((post) => {
       
         return (
           <div>
-          <div className='  flex  pt-3'>
-              <div className=' pt-4 p-4  cursor-pointer w-96 rounded-xl bg-slate-100'  >
+          <div className='  flex w-96  object-cover h-[510px] pt-3'>
+              <div className=' pt-4 p-4  cursor-pointer w-96 rounded-xl  bg-slate-200'  >
                 <div onClick={(()=>{navigate(`/post/${post.id}`)})}>
+                  <img className='rounded-lg object-cover w-full h-60' src={post.image}></img>
                   <h1 className=' font-bold text-2xl'>{post.title}</h1>
                   <p className='text-lg pt-2'>{post.descricao}</p>
                   <p className=' font-semibold'>by: {post.author.name}</p>

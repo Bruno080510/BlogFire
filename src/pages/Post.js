@@ -31,13 +31,16 @@ function Post() {
   }
 
   return (
-    <div >
-        <div className='px-32 pt-10'>
+    <div className='p-5' >
+        <div className='px-32  pt-10'>
             <h1 className=' text-6xl font-bold pb-2'>{post.title}</h1>
             <p className=' text-3xl'>{post.descricao}</p>
             <div className='flex text-lg gap-1 pb-5'>
                 <strong>by: </strong><p>{post.author.name}</p>
             </div>
+        </div>
+        <div className='flex items-center justify-center'>
+          <img className='p-10 w-[1100px]' src={post.image}></img>
         </div>
         <div className=' text-xl tracking-wider px-32 indent-10'>
             <p>{post.postText}</p>

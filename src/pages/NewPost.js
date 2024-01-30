@@ -10,13 +10,15 @@ function NewPost({isAuth}) {
   const [title, setTitle] = useState("")
   const [descricao, setDescricao] = useState("")
   const [ postText, setPostText ] = useState("")
+  const [image, setImage] = useState()
 
   const postCollection = collection(db, "posts")
   const createPost = async () => {
     await addDoc(postCollection, {
       title, 
       descricao,
-      postText, 
+      postText,
+      image,
       author: {name: auth.currentUser.displayName , id: auth.currentUser.uid 
       }})
     navigate("/")
@@ -53,7 +55,18 @@ function NewPost({isAuth}) {
               setPostText(e.target.value)
               }} />
         </div>
-        <button className=' h-12 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700'
+        <div className='p-10'> 
+          <label className='pe-2'>Link Image:</label>
+          <input className='bg-black w-96 text-white p-4 rounded-full border-gray-950' placeholder='Link da imagem...' 
+          onChange={(e)=>{
+            setImage(e.target.value)
+            }} />
+        </div>
+       
+        <button className=' h-12 text-white bg-gray-800 hover:bg-gray-900 
+        focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium
+         rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800
+          dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700'
          onClick={createPost}>submit post</button>
       </div>
     </div>
