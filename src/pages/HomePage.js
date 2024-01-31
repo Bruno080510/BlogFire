@@ -47,13 +47,12 @@ const navigate = useNavigate()
                   <p className='text-lg pt-2'>{post.descricao}</p>
                   <p className=' font-semibold'>by: {post.author.name}</p>
                 </div>
-              <div className='deletePost'>
+              <div className=''>
                 {
                   isAuth && post.author.id === auth.currentUser.uid &&
                 <button className=' h-12 text-white' onClick={() => {deletePost(post.id)}}><FaTrashAlt size="30px" color='red' /></button>
                 }
               </div>
-              <br></br>
             </div>
           </div>
           </div>)
