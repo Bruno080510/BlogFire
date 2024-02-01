@@ -8,7 +8,6 @@ import { auth } from './firebase';
 import Post from './pages/Post';
 import { FaUserCircle } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
-import { IoIosCreate } from "react-icons/io";
 
 import './App.css'
 
@@ -20,25 +19,23 @@ function App() {
     signOut(auth).then(() => {
       localStorage.clear();
       setIsAuth(false);
-      window.location.pathname = '/login';
+      window.location.pathname = '/';
     });
   }
 
   return (
     <Router>
-      <div className="pb-20">
-        <nav className="fixed p-10 flex justify-between w-full h-24 text-white text-2xl text-center items-center  bg-black">
-          <div className="flex items-center justify-center">
+      <div className="pb-20 overflow-auto">
+        <nav className="fixed p-10 flex justify-between w-full h-24 text-white text-3xl text-center items-center  bg-black">
+          <div className="flex items-center font-bold  justify-center">
             <Link to="/" className="px-3">
               ReadMe
             </Link>
-            {isAuth === 'true' && (
-              <div className="fixed bottom-4 right-4">
-                <Link to="/new" className="flex items-center  p-6 pe-12 rounded-full text-black">
-                  <IoIosCreate size="50px" />
-                </Link>
-              </div>
-            )}
+
+            <div className='flex justify-center px-2 text-lg '>
+              <input className=' w-64 h-9 p-3 rounded-lg  bg-slate-300' placeholder='Pesquisar'/>
+            </div>
+           
           </div>
           <div>
             <p className="text-black">.</p>
