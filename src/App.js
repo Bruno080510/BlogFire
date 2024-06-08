@@ -32,9 +32,7 @@ function App() {
               ReadMe
             </Link>
 
-            <div className='flex justify-center px-2 text-lg '>
-              <input className=' w-64 h-9 p-3 rounded-lg  bg-slate-300' placeholder='Pesquisar'/>
-            </div>
+          
            
           </div>
           <div>

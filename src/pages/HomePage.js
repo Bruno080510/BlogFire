@@ -30,11 +30,11 @@ let navigate = useNavigate()
   const deletePost = async (id) => {
     const postDoc = doc(db, "posts", id)
     await deleteDoc(postDoc)
-    window.location.reload(false);
+    navigate("/")
   }
 
 
- 
+
   return (
       <div className="pt-12">
           <div>
@@ -69,52 +69,82 @@ let navigate = useNavigate()
                       <IoIosCreate size="50px" />
                   </Link>
               </div>
-              {postList.map((post) => {
-                  return (
-                      <div>
-                          <div className="  flex w-96  object-cover h-[510px] pt-3">
-                              <div className=" pt-4 p-4  cursor-pointer w-96 rounded-xl  bg-slate-200">
-                                  <div
-                                      onClick={() => {
-                                          navigate(`/post/${post.id}`);
-                                      }}
-                                  >
-                                      <img
-                                          className="rounded-lg object-cover w-full h-60"
-                                          src={post.image}
-                                      ></img>
-                                      <h1 className="pt-2 font-bold text-2xl">
-                                          {post.title}
-                                      </h1>
-                                      <p className="text-lg pt-2">
-                                          {post.descricao}
-                                      </p>
-                                      <p className=" font-semibold">
-                                          by: {post.author.name}
-                                      </p>
-                                  </div>
-                                  <div className="">
-                                      {isAuth &&
-                                          post.author.id ===
-                                              auth.currentUser.uid && (
-                                              <button
-                                                  className=" h-12 text-white"
-                                                  onClick={() => {
-                                                      deletePost(post.id);
-                                                  }}
-                                              >
-                                                  <FaTrashAlt
-                                                      size="30px"
-                                                      color="red"
-                                                  />
-                                              </button>
-                                          )}
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  );
-              })}
+              <div className="flex flex-wrap justify-between">
+    {postList.map((post) => {
+        return (
+            <div className="w-1/3 p-2">
+                <div className="flex w-full object-cover h-[510px] pt-3">
+                    <div className="pt-4 p-4 cursor-pointer w-full rounded-xl bg-slate-200">
+                        {isAuth ? (
+                            <div
+                                onClick={() => {
+                                    navigate(`/post/${post.id}`);
+                                }}
+                            >
+                                            <img
+                                    className="rounded-lg object-cover w-full h-60"
+                                    src={post.image}
+                                    alt="Post Image"
+                                />
+                                <h1 className="pt-2 font-bold text-2xl">{post.title}</h1>
+                                <p className="text-lg pt-2">{post.descricao}</p>
+                                <p className="font-semibold">by: {post.author.name}</p>
+                            
+                        <div className="">
+                            {isAuth && post.author.id === auth.currentUser.uid && (
+                                <button
+                                    className="h-12 text-white"
+                                    onClick={() => {
+                                        deletePost(post.id);
+                                    }}
+                                >
+                                    <FaTrashAlt size="30px" color="red" />
+                                </button>
+                            )}
+                        </div>
+                        
+                            </div>
+                        ) : (
+                            <div
+                                onClick={() => {
+                                    navigate("/login");
+                                }}
+                            > <img
+                            className="rounded-lg object-cover w-full h-60"
+                            src={post.image}
+                            alt="Post Image"
+                        />
+                        <h1 className="pt-2 font-bold text-2xl">{post.title}</h1>
+                        <p className="text-lg pt-2">{post.descricao}</p>
+                        <p className="font-semibold">by: {post.author.name}</p>
+                    
+                <div className="">
+                    {isAuth && post.author.id === auth.currentUser.uid && (
+                        <button
+                            className="h-12 text-white"
+                            onClick={async () => {
+                                await deletePost(post.id)
+                               let url = window.location.href
+                               console.log(url)
+                               url = "/"
+                               navigate("/")
+                            }}
+                        >
+                            
+                            
+                            <FaTrashAlt size="30px" color="red" />
+                        </button>
+                    )}
+                </div></div>
+                            
+                        )}
+                    
+                    </div>
+                </div>
+            </div>
+        );
+    })}
+</div>
           </div>
       </div>
   );

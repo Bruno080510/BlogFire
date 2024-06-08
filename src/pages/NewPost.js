@@ -31,33 +31,34 @@ function NewPost({isAuth}) {
     }
   }, [])
   return (
-    <div className='justify-center flex items-center'>
+   
+    <div className=' flex ps-16 pt-10 items-center' onChange={window.scrollTo(0, 0)}>
       <div className='text-2xl pt-5'>
-        <h1>Create a Post</h1>
-        <div className='p-10'> 
-          <label className='pe-2'>Titutlo:</label>
-          <input className='bg-black w-96 text-white p-4 rounded-full border-gray-950' placeholder='digite o titulo...' 
+        <h1>Deixe seus pensamentos fluir</h1>
+        <div className='p-4'> 
+          <p className='pe-2 py-3'>Titutlo</p>
+          <input className=' bg-gray-300 w-[1000px] text-black p-4 rounded-xl border-gray-950' placeholder='digite o titulo...' 
           onChange={(e)=>{
             setTitle(e.target.value)
             }} />
         </div>
-        <div className='p-10 items-start flex'>
-          <label className='pe-2'>Post:</label>
-          <input className='bg-black w-96 text-white p-4 rounded border-gray-950' placeholder='descrição...' 
+        <div className='p-4 items-start '>
+          <p className='pe-2 py-3'>Descrição</p>
+          <input className='bg-gray-300 w-[1000px] text-black p-4 rounded-xl border-gray-950' placeholder='Descrição...' 
             onChange={(e)=>{
               setDescricao(e.target.value)
               }} />
         </div>
-        <div className='p-10 items-start flex'>
-          <label className='pe-2'>Post:</label>
-          <textarea className='bg-black w-96 text-white p-4 rounded border-gray-950' placeholder='digite o seu post...' 
+        <div className='p-4 items-start '>
+          <p className='pe-2 py-3'>Post</p>
+          <textarea className='bg-gray-300 w-[1000px] text-black p-4 h-80 rounded-xl border-gray-950' placeholder='digite o seu post...' 
             onChange={(e)=>{
               setPostText(e.target.value)
               }} />
         </div>
-        <div className='p-10'> 
-          <label className='pe-2'>Link Image:</label>
-          <input className='bg-black w-96 text-white p-4 rounded-full border-gray-950' placeholder='Link da imagem...' 
+        <div className='p-4'> 
+          <p className='pe-2 py-3'>Link Image</p>
+          <input className='bg-gray-300 w-[1000px] text-black p-4 rounded-xl border-gray-950' placeholder='Link da imagem...' 
           onChange={(e)=>{
             setImage(e.target.value)
             }} />

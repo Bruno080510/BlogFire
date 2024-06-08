@@ -14,6 +14,7 @@ import { db, auth } from '../firebase'
 function Comentario({ id, postCollection }) {
   const [comment, setComment] = useState("");
   const [commentList, setCommentList] = useState([]);
+  const navigate = useNavigate();
 
   const createComentario = async () => {
     if(comment == ""){
@@ -42,20 +43,16 @@ function Comentario({ id, postCollection }) {
 
   const deleteComentario = async (id, authorId) => {
 
-    if (auth.currentUser.uid !== authorId) {
-      console.error("Você não tem permissão para excluir este comentário.");
-      return;
-    }else{
-
       const postDoc = id ? doc(db, "comentario", id) : null;
 
 if (postDoc) {
   await deleteDoc(postDoc);
-  window.location.reload(false);
+  navigate(`/post/${Post.id}`);
+  
 } else {
   console.error("ID do comentário é inválido.");
 }
-    }
+    
   }
 
   return (
@@ -136,6 +133,7 @@ function Post({commentList}) {
 
         if (postSnapshot.exists()) {
           setPost({ id: postSnapshot.id, ...postSnapshot.data() });
+          window.scrollTo(0, 0); 
         } else {
           console.error('Post not found');
         }
@@ -154,7 +152,7 @@ function Post({commentList}) {
   }
 
   return (
-    <div className='p-5' >
+    <div className='p-5 ' >
         <div className='px-32  pt-10'>
             <h1 className=' text-6xl font-bold pb-2'>{post.title}</h1>
             <p className=' text-3xl'>{post.descricao}</p>
